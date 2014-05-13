@@ -1,4 +1,9 @@
 <?php
+class PagingData{
+  	public $Data;
+	public $DataCount;
+	public $PageCount;
+}
 
 abstract class DbBase {
 	private $ServerName = "localhost:3306";
@@ -32,16 +37,82 @@ abstract class DbBase {
 		return isset($this->ColNames) && isset($this->tableName) && isset($this->IdName);
 	}
 
+	function inject_sql_replace($str)
+	{
+		$str = str_replace("execute","",$str);
+		$str = str_replace("update","",$str);
+		$str = str_replace("count","",$str);
+		$str = str_replace("chr","",$str);
+		$str = str_replace("mid","",$str);
+		$str = str_replace("master","",$str);
+		$str = str_replace("truncate","",$str);
+		$str = str_replace("char","",$str);
+		$str = str_replace("declare","",$str);
+		$str = str_replace("select","",$str);
+		$str = str_replace("create","",$str);
+		$str = str_replace("delete","",$str);
+		$str = str_replace("insert","",$str);
+		$str = str_replace("\"","",$str);
+	    $str = str_replace("%20","",$str);
+	   return $str;
+	}
+
 	//查询数据
 	public function query()
 	{
-		$dataArray = array();
+		$dataArray = NULL;
 		if($this->Check())
 		{
-			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error());
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
 			$sql = "select * from " . $this->tableName;
-			$result=mysqli_query($con,$sql) or die("数据库查询异常" . mysqli_error());;
+			$result=mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
+			$dataArray = array();
+			while($row=mysqli_fetch_object($result,$this->tableName))
+			{
+				$dataArray[]=$row;
+			}
+			mysqli_close($con);
+		}
+		return $dataArray;
+	}
+
+	public function queryByPaging($pageIndex,$pageSize)
+	{
+		$data = new PagingData();
+		$pageIndex = intval($pageIndex);
+		$pageSize = intval($pageSize);
+		if($this->Check())
+		{
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
+			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
+			$sql = "select count(1) from " . $this->tableName;
+			$result=mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
+			$data->DataCount = (int)mysqli_fetch_row($result)[0];
+			$data->PageCount = ceil($data->DataCount / $pageSize);
+			$sql = "select * from  " . $this->tableName . " limit " . (($pageIndex - 1)*$pageSize) . "," . $pageSize;
+			$result=mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
+			$data->Data = array();
+			while($row=mysqli_fetch_object($result,$this->tableName))
+			{
+				$data->Data[]=$row;
+			}
+			mysqli_close($con);
+		}
+
+		return $data;
+	}
+
+	//查询数据
+	public function queryByCondition($condition)
+	{
+		$dataArray = NULL;
+		if($this->Check())
+		{
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
+			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
+			$sql = "select * from " . $this->tableName . " where 1 = 1 and " . $this->inject_sql_replace($condition);
+			$result=mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
 			$dataArray = array();
 			while($row=mysqli_fetch_object($result,$this->tableName))
 			{
@@ -70,10 +141,10 @@ abstract class DbBase {
 			}
 
 
-			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error());
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
 			$sql = "insert into " .$this->tableName ."(" . join(",", $this->ColNames) .") VALUES(". $valuesStr .")" ;
-			mysqli_query($con,$sql) or die("数据库查询异常" . mysqli_error());;
+			mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
 			mysqli_close($con);
 		}
 	}
@@ -96,10 +167,10 @@ abstract class DbBase {
 				}
 			}
 
-			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error());
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
 			$sql = "update " .$this->tableName ." set " . $setValueStr . " where " . $this->IdName . " = " .$dataObj.$this->IdName ;
-			mysqli_query($con,$sql) or die("数据库查询异常" . mysqli_error());;
+			mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
 			mysqli_close($con);
 		}
 	}
@@ -108,12 +179,13 @@ abstract class DbBase {
 	public function delete($id)
 	{
 		$data = NULL;
+		$id = intval($id);
 		if($this->Check())
 		{
-			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error());
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
 			$sql = "delete from " . $this->tableName . " where " . $this->IdName ." = " . $id;
-			mysqli_query($con,$sql) or die("数据库查询异常" . mysqli_error());;
+			mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
 			mysqli_close($con);
 		}
 		return $data;
@@ -123,13 +195,14 @@ abstract class DbBase {
 	public function queryById($id)
 	{
 		$data = NULL;
+		$id = intval($id);
 		if($this->Check())
 		{
-			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error());
+			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
 			$sql = "select * from " . $this->tableName . " where " . $this->IdName ." = " . $id;
-			$result=mysqli_query($con,$sql) or die("数据库查询异常" . mysqli_error());;
-			$data =mysql_fetch_object($result,$this->tableName);
+			$result=mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
+			$data =mysqli_fetch_object($result,$this->tableName);
 			mysqli_close($con);
 		}
 		return $data;
