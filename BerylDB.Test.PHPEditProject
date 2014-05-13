@@ -1,9 +1,9 @@
-<Project version="3.4" name="BerylDB" xmlns="http://www.waterproof.fr/PHPEdit/Project">
+<Project version="3.4" name="BerylDB.Test" xmlns="http://www.waterproof.fr/PHPEdit/Project">
   <set:Settings version="3.4" xmlns:set="http://www.waterproof.fr/PHPEdit/Settings">
     <set:Property key="Languages">
       <set:Property key="PHP">
         <set:Property key="RootNamespace">
-          <set:Data>BerylDB</set:Data>
+          <set:Data>BerylDB.Test</set:Data>
         </set:Property>
       </set:Property>
     </set:Property>
