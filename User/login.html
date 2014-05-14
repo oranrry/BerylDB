@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>登录 </title>
     <meta name="author" content="">
     <meta charset="utf-8">
@@ -9,47 +9,52 @@
     <meta name="viewport" content="maximum-scale=1.0,width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/base_common.css" />
     <link rel="stylesheet" type="text/css" href="/css/base_outer.css" />
-    <style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
+    <link rel="stylesheet" type="text/css" href="/easyui/demo/demo.css">
+    <style type="text/css">.fancybox-margin{margin-right:0px;}</style>
+</head>
 <body class="">
 <div id="wrap-all"><div id="main" class="inner">
-<div class="other-warp login-wrap ng-scope" data-ng-controller="user_login_ctrl">
-    <div data-minheight="58" class="single-panel clearfix" style="min-height: 850px;">
-        <div class="single-panel-inner login-mini">
-            <div class="single-panel-header">
-                <h3>登陆</h3>
-            </div>
-            <div class="single-panel-body">
-                <div class="single-panel-section">
-                    <form name="login_form" class="form-horizontal wt-form " method="post" action="login.php">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icon icon-user"></i></span>
-                                <input class="form-control valid" type="text" placeholder="输入用户名" name="login_name" id="login_name">
-                            </div>
-                        </div>
+	<div class="other-warp login-wrap ng-scope" data-ng-controller="user_login_ctrl">
+	    <div data-minheight="58" class="single-panel clearfix" style="min-height: 850px;">
+	        <div class="single-panel-inner login-mini">
+	            <div class="single-panel-header">
+	                <h3>登陆</h3>
+	            </div>
+	            <div class="single-panel-body">
+	                <div class="single-panel-section">
+	                    <form name="login_form" class="form-horizontal wt-form " method="post">
+	                        <div class="form-group">
+	                            <div class="input-group">
+	                                <span class="input-group-addon"><i class="icon icon-lock"></i></span>
+	                                <input class="form-control valid" type="text" placeholder="输入用户名" name="login_name" id="login_name">
+	                            </div>
+	                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon fs_17"><i class="icon icon-lock"></i></span>
-                                <input class="form-control valid" type="password" placeholder="输入密码" name="login_password" id="login_password">
-                            </div>
-                        </div>
-                        <div class="form-group" style="display:none;" >
-                            <div class="alert alert-danger">
-                                <i class="icon-remove-sign mr_5"></i>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-lg btn-block" type="submit"> 登 录
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+	                        <div class="form-group">
+	                            <div class="input-group">
+	                                <span class="input-group-addon fs_17"><i class="icon icon-lock"></i></span>
+	                                <input class="form-control valid" type="password" placeholder="输入密码" name="login_password" id="login_password">
+	                            </div>
+	                        </div>
+	                        <div id="divAlert" class="form-group" style="display:none;" >
+	                            <div class="alert alert-danger">
+	                                <img src="/easyui/themes/icons/no.png"/>
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <button class="btn btn-success btn-lg btn-block" type="button"> 登 录
+	                            </button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+	</div>
 </div>
-</div>
+
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js" ></script>
+<script type="text/javascript" src="/js/login.js" ></script>
 </body>
 </html>

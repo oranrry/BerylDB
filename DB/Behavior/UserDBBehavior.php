@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"]."/Model/User.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/DB/DbBase.php");
 
 class UserDBBehavior extends DbBase {
 	private static $_instance = NULL;
@@ -17,7 +19,7 @@ class UserDBBehavior extends DbBase {
 	{
 		$this->tableName = "UserInfo";
 		$this->IdName="UserId";
-		$this->ColNames = array("UserId","UserName","UserPassword",
+		$this->ColNames = array("UserName","UserPassword",
 		"CreatedTime","UserStatus","LastLoginIp","LastLoginTime","VersionNo");
 	}
 }

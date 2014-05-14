@@ -1,20 +1,19 @@
 <?php
 session_start();
-require_once("../Model/User.php");
-require_once("../DB/DbBase.php");
-require_once("../DB/Behavior/UserDBBehavior.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/DB/Behavior/UserDBBehavior.php");
 
-$goUrl = "../Test/Test1.php";
 $userName=$_POST['login_name'];
 $userPwd=$_POST['login_password'];
 if(empty($userName))
 {
-	echo "<script>alert('ÇëÊäÈëÓÃ»§Ãû!');history.back();</script>";
+	//echo "<script>alert('è¯·è¾“å…¥ç”¨æˆ·å!');history.back();</script>";
+	echo "è¯·è¾“å…¥ç”¨æˆ·åï¼";
 	return;
 }
 else if(empty($userPwd))
 {
-	echo "<script>alert('ÇëÊäÈëÃÜÂë!');history.back();</script>";
+	//echo "<script>alert('è¯·è¾“å…¥å¯†ç !');history.back();</script>";
+	echo "è¯·è¾“å…¥å¯†ç ï¼";
 	return;
 }
 
@@ -23,11 +22,13 @@ $UserDB = UserDBBehavior::getInstance();
 $users = $UserDB->queryByCondition($condition);
 if (!is_array($users) || count($users) < 1)
 {
-	echo "<script>alert('ÓÃ»§Ãû»òÕßÃÜÂë´íÎó!');history.back();</script>";
+	//echo "<script>alert('ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯!');history.back();</script>";
+	echo "ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯ï¼";
 	return;
 }
 
 $user = $users[0];
-echo("<script>alert('µÇÂ½³É¹¦!');location.href='../Test/Test1.php';</script>");
+//echo("<script>alert('ç™»é™†æˆåŠŸ!');location.href='../Test/Test1.php';</script>");
 $_SESSION['userId']=$user->UserId;
+echo(1);
 ?>
