@@ -4,7 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/DB/DbBase.php");
 
 class UserDBBehavior extends DbBase {
 	private static $_instance = NULL;
-	//µ¥ÀıÄ£Ê½
+	//å•ä¾‹æ¨¡å¼
 	public static function getInstance()
 	{
 		if(!self::$_instance instanceof self)

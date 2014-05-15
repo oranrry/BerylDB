@@ -58,6 +58,10 @@
 .icon-lock{
 	background:url('icons/lock.png') no-repeat center center;
 }
+.icon-portrait{
+	background:url('icons/portrait.png') no-repeat center center;
+}
+
 
 .icon-mini-add{
 	background:url('icons/mini_add.png') no-repeat center center;

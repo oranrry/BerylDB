@@ -8,12 +8,12 @@ if(isset($_SESSION["userId"])&&time()>$_SESSION['userId'] + 1200){
 	$user = $UserDB->queryById($_SESSION['userId']);
 	if($user == NULL)
 	{
-		echo "<script>location.href='User/login.html';</script>";
+		echo "<script>top.location.href='User/login.html';</script>";
 	}
 }
 else
 {
-	echo "<script>location.href='User/login.html';</script>";
+	echo "<script>top.location.href='User/login.html';</script>";
 }
 
 ?>

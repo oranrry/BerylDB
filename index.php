@@ -25,10 +25,30 @@
 			</tr>
 		</table>
 	</div>
-	<div data-options="region:'west',split:true,title:'West'" style="width:150px;padding:10px;">
+	<div data-options="region:'west',split:true,title:'菜单'" style="width:120px;padding:20px;">
+		<table>
+			<tr>
+				<td style="padding-bottom: 20px;">
+					<a onclick="javascript:$('#mainframe').attr('src','');" data-options="iconCls:'icon-large-construction',size:'large',iconAlign:'top'" class="easyui-linkbutton">新增公司</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-bottom: 20px;">
+					<a onclick="javascript:$('#mainframe').attr('src','');" data-options="iconCls:'icon-large-company',size:'large',iconAlign:'top'" class="easyui-linkbutton">管理公司</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+
 
 	</div>
-	<div data-options="region:'center',title:'Center'"></div>
+	<div data-options="region:'center',title:'工作'">
+		<iframe id="mainframe" name="mainframe" width="100%" height="100%" src="/User/welcome.html"></iframe>
+	</div>
 </body>
 </html>
 
