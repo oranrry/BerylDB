@@ -29,12 +29,12 @@
 		<table>
 			<tr>
 				<td style="padding-bottom: 20px;">
-					<a onclick="javascript:$('#mainframe').attr('src','');" data-options="iconCls:'icon-large-construction',size:'large',iconAlign:'top'" class="easyui-linkbutton">新增公司</a>
+					<a onclick="javascript:$('#mainframe').attr('src','/Company/AddCompany.html');" data-options="iconCls:'icon-large-construction',size:'large',iconAlign:'top'" class="easyui-linkbutton">新增公司</a>
 				</td>
 			</tr>
 			<tr>
 				<td style="padding-bottom: 20px;">
-					<a onclick="javascript:$('#mainframe').attr('src','');" data-options="iconCls:'icon-large-company',size:'large',iconAlign:'top'" class="easyui-linkbutton">管理公司</a>
+					<a onclick="javascript:$('#mainframe').attr('src','/Company/CompanyList.html');" data-options="iconCls:'icon-large-company',size:'large',iconAlign:'top'" class="easyui-linkbutton">管理公司</a>
 				</td>
 			</tr>
 			<tr>

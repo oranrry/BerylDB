@@ -2,6 +2,11 @@
 session_start();
 require_once($_SERVER["DOCUMENT_ROOT"]."/DB/Behavior/UserDBBehavior.php");
 
+if(!isset($_POST['login_name']) || !$_POST['login_password'])
+{
+	echo "<script>location.href='/404.html';</script>"
+}
+
 $userName=$_POST['login_name'];
 $userPwd=$_POST['login_password'];
 if(empty($userName))
