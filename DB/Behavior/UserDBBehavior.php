@@ -20,7 +20,7 @@ class UserDBBehavior extends DbBase {
 		$this->tableName = "UserInfo";
 		$this->IdName="UserId";
 		$this->ColNames = array("UserName","UserPassword",
-		"CreatedTime","UserStatus","LastLoginIp","LastLoginTime","VersionNo");
+		"CreatedTime","UserStatus","LastLoginIp","LastLoginTime");
 	}
 }
 ?>

@@ -2,7 +2,7 @@
 <html lang="zh-CN" class="">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>������˾</title>
+	<title>新增公司</title>
 	<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="/easyui/demo/demo.css">
@@ -10,6 +10,77 @@
 	<script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
 </head>
 <body>
-<p>Hello World</p>
+<h2>新增公司</h2>
+<p><a class="easyui-linkbutton" onclick="javascript:$('#mainForm').form('submit')">&nbsp;保 存&nbsp;</a></p>
+<div align="center" style="display:block; width:100%;">
+	<div class="panel-header">
+		<div align="left" class="panel-title">公司信息</div>
+	</div>
+	<div class="panel-body" style="padding:10px 60px 20px 60px;">
+		<form id="mainForm" method="post">
+			<table width="100%" >
+				<tr>
+					<td style="font-size:large;">
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size:large;">
+						公司名称：
+						<input style="width:200px;height:25px;" id="CorporationName" name="CorporationName" class="easyui-validatebox textbox" data-options="required:true,validType:'length[3,50]'">
+					</td>
+					<td style="font-size:large;">
+						公司联系电话：
+						<input style="width:200px;height:25px;" id="Telephone" name="Telephone" class="easyui-validatebox textbox" >
+					</td>
+					<td style="font-size:large;">
+						公司详细地址：
+						<input style="width:400px;height:25px;" id="Telephone" name="Telephone" class="easyui-validatebox textbox" >
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size:large;">
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="font-size:large;">
+						公司所在地：
+						<select class="easyui-combobox" id="Province" name="Province">
+						</select>
+						&nbsp;
+						<select class="easyui-combobox" id="City" name="City">
+						</select>
+						<input type="hidden" name="LocalityId" id="LocalityId" value="0" />
+					</td>
+					<td style="font-size:large;">
+						公司行业：
+						<select class="easyui-combobox" id="MainIndustry" name="MainIndustry">
+						</select>
+						&nbsp;
+						<select class="easyui-combobox" id="SubIndustry" name="SubIndustry">
+						</select>
+						<input type="hidden" name="IndustryId" id="IndustryId" value="0" />
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size:large;">
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size:large;">
+					公司介绍：
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="font-size:large;">
+					<textarea name="CompanyIntroduction" id="CompanyIntroduction" class="easyui-validatebox textbox" style="width:90%;" rows="35" ></textarea>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
 </body>
 </html>

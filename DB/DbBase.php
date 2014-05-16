@@ -136,7 +136,7 @@ abstract class DbBase {
 				$valuesStr = $valuesStr . $dataArray[$this->ColNames[$i]];
 				if($i<$arrayLength - 1)
 				{
-					$valuesStr = $valuesStr . ",";
+					$valuesStr = "'" .$valuesStr . "',";
 				}
 			}
 
@@ -160,7 +160,7 @@ abstract class DbBase {
 			for($i=0;$i<$arrayLength;$i++)
 			{
 				$colName = $this->ColNames[$i];
-				$setValueStr = $setValueStr . $colName . " = " . $dataArray[$colName];
+				$setValueStr = $setValueStr . $colName . " = '" . $dataArray[$colName]. "'";
 				if($i<$arrayLength - 1)
 				{
 					$setValueStr = $setValueStr . ",";
@@ -169,7 +169,7 @@ abstract class DbBase {
 
 			$con = mysqli_connect($this->ServerName,$this->UserName,$this->SqlPWD,$this->DbName) or die("数据库连接异常！" . mysqli_error($con));
 			//mysqli_select_db($this->DbName, $con) or die("数据库选择异常" . mysql_error());;
-			$sql = "update " .$this->tableName ." set " . $setValueStr . " where " . $this->IdName . " = " .$dataObj.$this->IdName ;
+			$sql = "update " .$this->tableName ." set " . $setValueStr . " where " . $this->IdName . " = " . $dataArray[$this->IdName] ;
 			mysqli_query($con,$sql) or die("数据库查询异常" . $sql . mysqli_error($con));
 			mysqli_close($con);
 		}

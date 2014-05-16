@@ -15,12 +15,20 @@
 		<table >
 			<tr>
 				<td>
-					<?php
-						echo $user->UserName . "欢迎你！";
-					?>
+					<?php echo $user->UserName . "欢迎你！"; ?>
 				</td>
 				<td>
 					<a onclick="javascript:location.href='/user/logout.php'" class="easyui-linkbutton">退出</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
+					您最后登录的IP是：<?php echo $user->LastLoginIp;  ?>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
+					最后登录的时间是：<?php echo $user->LastLoginTime;  ?>
 				</td>
 			</tr>
 		</table>
@@ -29,12 +37,12 @@
 		<table>
 			<tr>
 				<td style="padding-bottom: 20px;">
-					<a onclick="javascript:$('#mainframe').attr('src','/Company/AddCompany.html');" data-options="iconCls:'icon-large-construction',size:'large',iconAlign:'top'" class="easyui-linkbutton">新增公司</a>
+					<a onclick="javascript:$('#mainframe').attr('src','/Company/addCompany.html');" data-options="iconCls:'icon-large-construction',size:'large',iconAlign:'top'" class="easyui-linkbutton">新增公司</a>
 				</td>
 			</tr>
 			<tr>
 				<td style="padding-bottom: 20px;">
-					<a onclick="javascript:$('#mainframe').attr('src','/Company/CompanyList.html');" data-options="iconCls:'icon-large-company',size:'large',iconAlign:'top'" class="easyui-linkbutton">管理公司</a>
+					<a onclick="javascript:$('#mainframe').attr('src','/Company/companyList.html');" data-options="iconCls:'icon-large-company',size:'large',iconAlign:'top'" class="easyui-linkbutton">管理公司</a>
 				</td>
 			</tr>
 			<tr>

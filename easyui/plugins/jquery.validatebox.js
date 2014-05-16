@@ -203,7 +203,7 @@ $.fn.validatebox.parseOptions=function(_2a){
 var t=$(_2a);
 return $.extend({},$.parser.parseOptions(_2a,["validType","missingMessage","invalidMessage","tipPosition",{delay:"number",deltaX:"number"}]),{required:(t.attr("required")?true:undefined),novalidate:(t.attr("novalidate")!=undefined?true:undefined)});
 };
-$.fn.validatebox.defaults={required:false,validType:null,validParams:null,delay:200,missingMessage:"This field is required.",invalidMessage:null,tipPosition:"right",deltaX:0,novalidate:false,tipOptions:{showEvent:"none",hideEvent:"none",showDelay:0,hideDelay:0,zIndex:"",onShow:function(){
+$.fn.validatebox.defaults={required:false,validType:null,validParams:null,delay:200,missingMessage:"此项不能为空！",invalidMessage:null,tipPosition:"right",deltaX:0,novalidate:false,tipOptions:{showEvent:"none",hideEvent:"none",showDelay:0,hideDelay:0,zIndex:"",onShow:function(){
 $(this).tooltip("tip").css({color:"#000",borderColor:"#CC9933",backgroundColor:"#FFFFCC"});
 },onHide:function(){
 $(this).tooltip("destroy");
@@ -219,6 +219,6 @@ var _31={};
 _31[_30[1]]=_2f;
 var _32=$.ajax({url:_30[0],dataType:"json",data:_31,async:false,cache:false,type:"post"}).responseText;
 return _32=="true";
-},message:"Please fix this field."}}};
+},message:"请重新输入正确的数据！"}}};
 })(jQuery);
 
